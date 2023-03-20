@@ -40,7 +40,7 @@ export const AuthProvider = ({children})=> {
       setAuthTokens(null)
       setUser(null)
       localStorage.removeItem('authTokens')
-      hostory('/login')
+      history('/login')
   }
   
   let updateTokens = async () => {
@@ -66,6 +66,7 @@ export const AuthProvider = ({children})=> {
   let contextData = {
       user:user,
       loginUser:loginUser,
+      authTokens:authTokens,
       logoutUser:logoutUser
   }
 
