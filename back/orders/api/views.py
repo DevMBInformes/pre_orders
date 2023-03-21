@@ -22,7 +22,8 @@ class MyTokenObtainPairView(TokenObtainPairView):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_colors(request):
-    user = request.user   
-    colors = user.color_set.all()
+    #user = request.user   
+    #colorx =  user.color.all()
+    colors = Color.objects.all()
     serializer = ColorSerializer(colors, many=True)
     return Response(serializer.data)

@@ -7,9 +7,8 @@ const HomePage = () => {
   useEffect(()=>{
     getColor()
   }, [])
-
   let getColor = async()=>{
-    let response = await fetch('http://127.0.0.1/api/color/',{
+    let response = await fetch('http://localhost:8000/api/color/',{
     method : 'GET',
     headers : {
           'Content-Type' : 'application/json',
@@ -17,6 +16,7 @@ const HomePage = () => {
     }
     })
     let data = await response.json()
+    console.log(data)
     setColor(data)
   }
   return (
