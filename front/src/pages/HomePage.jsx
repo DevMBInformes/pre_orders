@@ -3,10 +3,11 @@ import {AuthContext} from '../context/AuthContext.jsx'
 
 const HomePage = () => {
   let [colors, setColor] = useState([])
-  let {authTokens} = useContext(AuthContext)
+  let {authTokens, logoutUser} = useContext(AuthContext)
   useEffect(()=>{
     getColor()
   }, [])
+  
   let getColor = async()=>{
     let response = await fetch('http://localhost:8000/api/color/',{
     method : 'GET',
@@ -16,9 +17,17 @@ const HomePage = () => {
     }
     })
     let data = await response.json()
-    console.log(data)
-    setColor(data)
-  }
+
+
+    if (response.status === 200){
+      setColor(data)
+    }else if( response.status === 401){
+      logoutUser()
+    }
+     
+
+    }
+  
   return (
     <div>You are logged in HomePage
 
